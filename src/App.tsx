@@ -1,5 +1,5 @@
 import { southAsiaMap } from "./data/southAsiaMap";
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 
 const navItems = [
   ["Platform", "#platform"],
@@ -219,6 +219,31 @@ function App() {
   const [annual, setAnnual] = useState(false);
   const [activeStation, setActiveStation] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const menuButton = useRef<HTMLButtonElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const skipFocus = useRef(true);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButton.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (skipFocus.current) {
+      skipFocus.current = false;
+      return;
+    }
+    if (submitted) successRef.current?.focus();
+    else formRef.current?.querySelector<HTMLInputElement>("input")?.focus();
+  }, [submitted]);
 
   const prices = useMemo(() => ({
     campus: annual ? "₹20,000" : "₹24,000",
@@ -241,7 +266,7 @@ function App() {
             <a className="button button-primary mobile-cta" href="#demo">Book a demo <ArrowIcon /></a>
           </nav>
           <a className="button button-primary desktop-cta" href="#demo">Book a demo <ArrowIcon /></a>
-          <button className={`menu-button ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation" aria-expanded={menuOpen}>
+          <button ref={menuButton} className={`menu-button ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation" aria-expanded={menuOpen}>
             <span /><span />
           </button>
         </div>
@@ -427,9 +452,9 @@ function App() {
             <div className="demo-meta"><span>RESPONSE TIME</span><strong>Within 1 business day</strong><span>LOCATION</span><strong>Nashik, Maharashtra</strong></div>
           </div>
           {submitted ? (
-            <div className="form-success"><span>REQUEST RECEIVED / 200</span><h3>Thank you.</h3><p>Our mission team will contact you within one business day.</p><button onClick={() => setSubmitted(false)}>Submit another request</button></div>
+            <div className="form-success" ref={successRef} tabIndex={-1} role="status"><span>REQUEST RECEIVED / 200</span><h3>Thank you.</h3><p>Our mission team will contact you within one business day.</p><button onClick={() => setSubmitted(false)}>Submit another request</button></div>
           ) : (
-            <form onSubmit={handleSubmit}>
+            <form ref={formRef} onSubmit={handleSubmit}>
               <label><span>YOUR NAME</span><input required name="name" autoComplete="name" placeholder="Full name" /></label>
               <label><span>WORK EMAIL</span><input required name="email" type="email" autoComplete="email" placeholder="you@organisation.in" /></label>
               <label><span>ORGANISATION</span><input required name="organisation" placeholder="Company or university" /></label>
@@ -439,7 +464,7 @@ function App() {
               </div>
               <label><span>MESSAGE</span><textarea name="message" rows={3} placeholder="Mission, orbit, protocol and current ground segment" /></label>
               <button className="button form-submit" type="submit">Request a technical demo <ArrowIcon /></button>
-              <small>By submitting, you agree to our privacy policy.</small>
+              <small>* Required. By submitting, you agree to our privacy policy.</small>
             </form>
           )}
         </div>
