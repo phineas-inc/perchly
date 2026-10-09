@@ -287,21 +287,6 @@ function App() {
         <ConsolePreview />
       </section>
 
-      <section className="trust-strip section-shell">
-        <p>Built for teams flying from India</p>
-        <div className="logo-row">
-          {["ORBITAL", "AKASH", "VYOM", "ANTARIKSH", "DHRUVA", "KALPANA"].map((logo, i) => (
-            <div key={logo} className={`placeholder-logo logo-${i}`}><i />{logo}</div>
-          ))}
-        </div>
-      </section>
-
-      <section className="stats section-shell" aria-label="Key metrics">
-        <article><span className="eyebrow">GROUND SEGMENT COST SAVED</span><strong>65<span>%</span></strong><p>Placeholder based on a typical single-satellite mission.</p></article>
-        <article><span className="eyebrow">TYPICAL ONBOARDING</span><strong>14<span> DAYS</span></strong><p>From interface document to first simulated pass.</p></article>
-        <article><span className="eyebrow">MISSION OPERATIONS</span><strong>24<span>×</span>7</strong><p>Staffed operations centre in Nashik, Maharashtra.</p></article>
-      </section>
-
       <section className="section-block section-shell" id="platform">
         <div className="section-heading">
           <div><div className="section-kicker"><span>02</span> THE PLATFORM</div><h2>Ground software without<br />the ground-up build.</h2></div>
@@ -382,11 +367,11 @@ function App() {
               <article><span>03</span><div><h3>Anomaly response</h3><p>On-call operators, controlled procedures and a complete incident timeline.</p></div></article>
             </div>
             <div className="timeline-panel">
-              <div className="timeline-head"><span>NASHIK OPS / SHIFT PLAN</span><strong><i /> STAFFED NOW</strong></div>
+              <div className="timeline-head"><span>NASHIK OPS / SAMPLE SHIFT PLAN</span><strong><i /> STAFFED NOW</strong></div>
               <div className="clock-row">{["00", "04", "08", "12", "16", "20", "24"].map((t) => <span key={t}>{t}:00</span>)}</div>
-              <div className="shift-row"><label>SHIFT A</label><div><i style={{ width: "33%" }} /><span>MEERA K.</span></div></div>
-              <div className="shift-row"><label>SHIFT B</label><div><i style={{ left: "33%", width: "34%" }} /><span style={{ left: "37%" }}>ARJUN R.</span></div></div>
-              <div className="shift-row"><label>SHIFT C</label><div><i style={{ left: "67%", width: "33%" }} /><span style={{ left: "71%" }}>NEHA S.</span></div></div>
+              <div className="shift-row"><label>SHIFT A</label><div><i style={{ width: "33%" }} /><span>SHIFT LEAD</span></div></div>
+              <div className="shift-row"><label>SHIFT B</label><div><i style={{ left: "33%", width: "34%" }} /><span style={{ left: "37%" }}>SHIFT LEAD</span></div></div>
+              <div className="shift-row"><label>SHIFT C</label><div><i style={{ left: "67%", width: "33%" }} /><span style={{ left: "71%" }}>SHIFT LEAD</span></div></div>
               <div className="now-line"><span>NOW / 14:32 IST</span></div>
               <div className="timeline-foot"><span>3 OPERATORS ON SHIFT</span><span>1 MISSION ACTIVE</span><span>0 OPEN ALARMS</span></div>
             </div>
@@ -401,7 +386,7 @@ function App() {
         </div>
         <div className="security-grid">
           {[
-            ["01", "IN-SPACe support", "Documentation support for ground segment authorisation."],
+            ["01", "Regulatory documentation", "Help preparing the paperwork for ground segment authorisation."],
             ["02", "India data residency", "Mission data hosted and backed up within India."],
             ["03", "Role-based access", "Separate permissions for view, procedure and command."],
             ["04", "Audit and encryption", "Full audit trail with encrypted command links."],
@@ -464,7 +449,7 @@ function App() {
               </div>
               <label><span>MESSAGE</span><textarea name="message" rows={3} placeholder="Mission, orbit, protocol and current ground segment" /></label>
               <button className="button form-submit" type="submit">Request a technical demo <ArrowIcon /></button>
-              <small>* Required. By submitting, you agree to our privacy policy.</small>
+              <small>* Required. By submitting, you agree to our <a href="/privacy.html">privacy policy</a>.</small>
             </form>
           )}
         </div>
@@ -477,10 +462,10 @@ function App() {
           <div className="footer-main">
             <div><Wordmark /><p>Mission control infrastructure<br />for small satellite teams.</p></div>
             <div><span>NAVIGATE</span>{navItems.slice(0, 4).map(([l, h]) => <a key={l} href={h}>{l}</a>)}</div>
-            <div><span>COMPANY</span><a href="#company">About</a><a href="#company">Careers</a><a href="#company">Privacy</a><a href="#company">Terms</a></div>
-            <div><span>CONTACT</span><p>Plot 00, Satpur MIDC<br />Nashik, Maharashtra 422007<br />India</p><a href="mailto:ops@sahyadrimc.in">ops@sahyadrimc.in</a></div>
+            <div><span>COMPANY</span><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+            <div><span>CONTACT</span><p>Nashik, Maharashtra<br />India</p><a href="mailto:ops@sahyadrimc.in">ops@sahyadrimc.in</a></div>
           </div>
-          <div className="footer-bottom"><span>© {new Date().getFullYear()} SAHYADRI MISSION CONTROL PVT. LTD.</span><div><a href="#company">LINKEDIN</a><a href="#company">X / TWITTER</a></div><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
+          <div className="footer-bottom"><span>© {new Date().getFullYear()} SAHYADRI MISSION CONTROL PVT. LTD.</span><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
         </div>
       </footer>
     </>
