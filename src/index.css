@@ -142,17 +142,22 @@ h2 { margin: 27px 0 0; font-size: clamp(38px, 5vw, 62px); }
 .compatibility span { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
 .network-section, .operations-section, .pricing-section { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #111518; }
 .network-grid { display: grid; grid-template-columns: 1.25fr .75fr; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-.map-panel { position: relative; min-width: 0; min-height: 555px; border-right: 1px solid var(--line); background: #111518; overflow: hidden; }
+.map-panel { position: relative; min-width: 0; min-height: 555px; border-right: 1px solid var(--line); background: #0d1013; overflow: hidden; }
 .map-meta { position: absolute; z-index: 2; inset: 18px 20px auto; display: flex; justify-content: space-between; color: #6d757c; font-family: var(--mono); font-size: 8px; letter-spacing: .08em; }
 .map-meta span:last-child { display: flex; align-items: center; gap: 8px; color: var(--teal); }
 .map-meta i { width: 5px; height: 5px; background: var(--teal); border-radius: 50%; }
 .india-map { width: 100%; height: 100%; min-height: 555px; }
-.map-outline { fill: #151a1e; stroke: #5b646b; stroke-width: 1.3; }
-.pass-arcs { fill: none; stroke: #394148; stroke-width: 1; stroke-dasharray: 4 6; }
+.map-graticule { fill: none; stroke: #1c2227; stroke-width: .6; }
+.map-land { fill: #1d2429; stroke: none; }
+.map-india { fill: #232c32; stroke: #7a858d; stroke-width: .9; stroke-linejoin: round; }
+.map-borders { fill: none; stroke: #566069; stroke-width: .6; stroke-linejoin: round; }
+.map-scalebar path { fill: none; stroke: #697178; stroke-width: 1; }
+.map-scalebar text { fill: #697178; font: 7px var(--mono); letter-spacing: .08em; }
+.pass-arcs { fill: none; stroke: #4fb6a8; stroke-opacity: .35; stroke-width: 1; stroke-dasharray: 3 5; }
 .station-point { outline: none; cursor: pointer; }
 .station-point circle:not(.pulse) { fill: var(--teal); }
 .station-point .pulse { fill: rgba(79,182,168,.08); stroke: rgba(79,182,168,.3); transition: r .2s; }
-.station-point text { fill: #899198; font: 7px var(--mono); letter-spacing: .07em; }
+.station-point text { fill: #aab1b7; paint-order: stroke; stroke: #111518; stroke-width: 3px; font: 8px var(--mono); letter-spacing: .07em; }
 .station-point.primary circle:not(.pulse) { fill: var(--gold); }
 .station-point.primary .pulse { fill: rgba(242,169,59,.1); stroke: rgba(242,169,59,.4); }
 .station-point.active .pulse { r: 18px; }
@@ -258,7 +263,7 @@ footer { padding: 70px 0 25px; background: #0b0e10; }
   .section-heading, .section-heading.compact { grid-template-columns: 1fr; gap: 25px; margin-bottom: 45px; }.section-heading.compact h2 { font-size: 38px; }h2 { font-size: 42px; }
   .bento-grid { grid-template-columns: 1fr; }.platform-card, .platform-card:nth-child(3n), .platform-card:nth-child(2n), .platform-card:nth-child(n+5) { min-height: 390px; border-right: 0; border-bottom: 1px solid var(--line); }.platform-card:last-child { border-bottom: 0; }
   .compatibility { align-items: flex-start; text-align: center; line-height: 1.7; }
-  .map-panel, .india-map { min-height: 380px; }.map-meta { inset: 14px 14px auto; }.pass-panel { overflow: hidden; }.table-scroll { overflow-x: auto; }table { min-width: 500px; }
+  .map-panel, .india-map { min-height: 0; }.india-map { aspect-ratio: 700 / 430; height: auto; }.station-point text { font-size: 14px; }.map-scalebar text { font-size: 12px; }.station-point .pulse { r: 14px; }.station-point.active .pulse { r: 22px; }.map-meta { inset: 14px 14px auto; }.pass-panel { overflow: hidden; }.table-scroll { overflow-x: auto; }table { min-width: 500px; }
   .market-grid { grid-template-columns: 1fr; }.market-grid article { min-height: auto; padding: 35px 28px; }.market-grid article:first-child { border-right: 0; border-bottom: 1px solid var(--line); }.market-grid h3 { font-size: 38px; }
   .ops-copy { grid-template-columns: 1fr; gap: 12px; }.timeline-panel { height: 340px; padding-inline: 14px; }.timeline-foot { left: 84px; gap: 15px; }.timeline-foot span:last-child { display: none; }
   .security-grid { grid-template-columns: repeat(2,1fr); }.security-grid article { min-height: 270px; }.security-grid article:nth-child(2) { border-right: 0; }.security-grid article:nth-child(-n+2) { border-bottom: 1px solid var(--line); }

@@ -1,3 +1,4 @@
+import { southAsiaMap } from "./data/southAsiaMap";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
 const navItems = [
@@ -153,29 +154,30 @@ function PlatformCard({ index, title, copy, type }: { index: string; title: stri
 }
 
 function IndiaMap({ active, setActive }: { active: string; setActive: (name: string) => void }) {
+  const { width, height, countries, india, borders, graticule, tracks, stations: points, kmPerPx } = southAsiaMap;
+  const scaleWidth = 500 / kmPerPx;
+  const [narrow, setNarrow] = useState(() => typeof window !== "undefined" && window.matchMedia("(max-width: 760px)").matches);
+
+  useEffect(() => {
+    const query = window.matchMedia("(max-width: 760px)");
+    const update = () => setNarrow(query.matches);
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
   return (
     <div className="map-panel">
       <div className="map-meta"><span>GROUND NETWORK / SOUTH ASIA</span><span><i /> LIVE NETWORK</span></div>
-      <svg className="india-map" viewBox="0 0 700 430" role="img" aria-label="Ground station network map centred on India">
-        <defs>
-          <pattern id="grid" width="35" height="35" patternUnits="userSpaceOnUse">
-            <path d="M35 0H0V35" fill="none" stroke="#262c32" strokeWidth="1" />
-          </pattern>
-        </defs>
-        <rect width="700" height="430" fill="url(#grid)" />
-        <g className="map-outline">
-          <path d="M309 42l35 31 52 9 19 28 47 10-22 37 22 33-38 34-18 58-26 75-18 39-13-42-28-58-18-56-33-52 12-37-30-33 27-29 4-45z" />
-          <path d="M464 121l64-23 66 12 36 34-41 17-39-12-38 26-42-5" />
-          <path d="M411 384l10 26" />
-        </g>
+      <svg className="india-map" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio={narrow ? "xMidYMid meet" : "xMidYMid slice"} role="img" aria-label="Ground station network map of South Asia showing stations at Nashik, Bengaluru, Lucknow and Port Blair">
+        <path className="map-graticule" d={graticule} />
+        <path className="map-land" d={countries} />
+        <path className="map-india" d={india} />
+        <path className="map-borders" d={borders} />
         <g className="pass-arcs">
-          <path d="M55 360Q278 55 640 72" />
-          <path d="M89 90Q356 390 659 195" />
-          <path d="M178 418Q360 148 667 324" />
+          {tracks.map((d) => <path key={d} d={d} />)}
         </g>
         {stations.map((station) => {
-          const cx = station.x * 7;
-          const cy = station.y * 4.3;
+          const { x: cx, y: cy } = points[station.name as keyof typeof points];
           return (
             <g
               key={station.name}
@@ -189,13 +191,16 @@ function IndiaMap({ active, setActive }: { active: string; setActive: (name: str
               aria-label={`${station.name} station`}
             >
               <circle className="pulse" cx={cx} cy={cy} r="11" />
-              <circle cx={cx} cy={cy} r="4" />
-              <text x={cx + 10} y={cy - 8}>{station.name.toUpperCase()}</text>
+              <circle cx={cx} cy={cy} r="3.5" />
+              <text x={cx + 11} y={cy + 3}>{station.name.toUpperCase()}</text>
             </g>
           );
         })}
+        <g className="map-scalebar" transform={`translate(24 ${height - 26})`}>
+          <path d={`M0 -4V0H${scaleWidth}V-4`} />
+          <text x="0" y="-9">500 KM</text>
+        </g>
       </svg>
-      <div className="map-scale">500 KM <span /></div>
     </div>
   );
 }
