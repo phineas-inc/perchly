@@ -202,6 +202,7 @@ function IndiaMap({ active, setActive }: { active: string; setActive: (name: str
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const todayLabel = useMemo(() => new Date().toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" }).toUpperCase(), []);
   const [annual, setAnnual] = useState(false);
   const [activeStation, setActiveStation] = useState("");
   const [submitted, setSubmitted] = useState(false);
@@ -236,7 +237,7 @@ function App() {
         <div className="hero-copy">
           <div className="section-kicker"><span>01</span> MISSION CONTROL AS A SERVICE</div>
           <h1>Fly your satellite<br />from a browser.</h1>
-          <p>One platform for telemetry, commanding and ground station passes. Operated 24x7 from Nashik, India.</p>
+          <p>One platform for telemetry, commanding and ground station passes. Operated 24×7 from Nashik, India.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#demo">Book a demo <ArrowIcon /></a>
             <a className="text-link" href="#platform">See the console <ArrowIcon /></a>
@@ -286,7 +287,7 @@ function App() {
           <div className="network-grid">
             <IndiaMap active={activeStation} setActive={setActiveStation} />
             <div className="pass-panel">
-              <div className="pass-heading"><div><span className="eyebrow">UPCOMING CONTACTS</span><strong>24 NOV 2025</strong></div><button aria-label="More pass options">•••</button></div>
+              <div className="pass-heading"><div><span className="eyebrow">UPCOMING CONTACTS</span><strong>{todayLabel}</strong></div><button aria-label="More pass options">•••</button></div>
               <div className="table-scroll">
                 <table>
                   <thead><tr><th>STATION</th><th>AOS / LOS</th><th>MAX EL.</th><th>BAND</th><th>PRICE</th></tr></thead>
@@ -388,7 +389,7 @@ function App() {
               <div className="tier-head"><span>02</span><h3>Mission</h3><p>For a commercial team operating a single satellite.</p></div>
               <div className="price"><strong>{prices.mission}</strong><span>/ month<br />+ passes</span></div>
               <a className="button button-primary" href="#demo">Book a technical demo <ArrowIcon /></a>
-              <ul><li>1 spacecraft</li><li>15 operator seats</li><li>Automation and custom dashboards</li><li>24x7 operations support</li></ul>
+              <ul><li>1 spacecraft</li><li>15 operator seats</li><li>Automation and custom dashboards</li><li>24×7 operations support</li></ul>
             </article>
             <article>
               <div className="tier-head"><span>03</span><h3>Constellation</h3><p>For multi-satellite teams with shared operational workflows.</p></div>
@@ -413,7 +414,8 @@ function App() {
             <div className="form-success"><span>REQUEST RECEIVED / 200</span><h3>Thank you.</h3><p>Our mission team will contact you within one business day.</p><button onClick={() => setSubmitted(false)}>Submit another request</button></div>
           ) : (
             <form onSubmit={handleSubmit}>
-              <label><span>YOUR NAME</span><input required name="name" placeholder="Full name" /></label>
+              <label><span>YOUR NAME</span><input required name="name" autoComplete="name" placeholder="Full name" /></label>
+              <label><span>WORK EMAIL</span><input required name="email" type="email" autoComplete="email" placeholder="you@organisation.in" /></label>
               <label><span>ORGANISATION</span><input required name="organisation" placeholder="Company or university" /></label>
               <div className="form-row">
                 <label><span>NUMBER OF SATELLITES</span><select name="satellites" defaultValue=""><option value="" disabled>Select</option><option>1</option><option>2–5</option><option>6–20</option><option>20+</option></select></label>
@@ -435,7 +437,7 @@ function App() {
             <div><span>COMPANY</span><a href="#company">About</a><a href="#company">Careers</a><a href="#company">Privacy</a><a href="#company">Terms</a></div>
             <div><span>CONTACT</span><p>Plot 00, Satpur MIDC<br />Nashik, Maharashtra 422007<br />India</p><a href="mailto:ops@sahyadrimc.in">ops@sahyadrimc.in</a></div>
           </div>
-          <div className="footer-bottom"><span>© 2025 SAHYADRI MISSION CONTROL PVT. LTD.</span><div><a href="#company">LINKEDIN</a><a href="#company">X / TWITTER</a></div><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
+          <div className="footer-bottom"><span>© {new Date().getFullYear()} SAHYADRI MISSION CONTROL PVT. LTD.</span><div><a href="#company">LINKEDIN</a><a href="#company">X / TWITTER</a></div><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
         </div>
       </footer>
     </main>
