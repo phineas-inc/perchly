@@ -57,6 +57,7 @@ function ConsolePreview() {
   const [seconds, setSeconds] = useState(12 * 60 + 47);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const timer = window.setInterval(() => setSeconds((value) => (value > 0 ? value - 1 : 14 * 60)), 1000);
     return () => window.clearInterval(timer);
   }, []);
@@ -175,7 +176,7 @@ function IndiaMap({ active, setActive }: { active: string; setActive: (name: str
   return (
     <div className="map-panel">
       <div className="map-meta"><span>GROUND NETWORK / SOUTH ASIA</span><span><i /> LIVE NETWORK</span></div>
-      <svg className="india-map" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio={narrow ? "xMidYMid meet" : "xMidYMid slice"} role="img" aria-label="Ground station network map of South Asia showing stations at Nashik, Bengaluru, Lucknow and Port Blair">
+      <svg className="india-map" viewBox={`0 0 ${width} ${height}`} preserveAspectRatio={narrow ? "xMidYMid meet" : "xMidYMid slice"} role="group" aria-label="Ground station network map of South Asia. Stations: Nashik, Bengaluru, Lucknow and Port Blair. Pass details are in the table.">
         <path className="map-graticule" d={graticule} />
         <path className="map-land" d={countries} />
         <path className="map-india" d={india} />
@@ -194,8 +195,8 @@ function IndiaMap({ active, setActive }: { active: string; setActive: (name: str
               onFocus={() => setActive(station.name)}
               onBlur={() => setActive("")}
               tabIndex={0}
-              role="button"
-              aria-label={`${station.name} station`}
+              role="img"
+              aria-label={`${station.name} ground station, ${station.band}-band, next pass ${station.aos}`}
             >
               <circle className="pulse" cx={cx} cy={cy} r="11" />
               <circle cx={cx} cy={cy} r="3.5" />
@@ -230,8 +231,9 @@ function App() {
   };
 
   return (
-    <main id="top">
-      <header className="site-header">
+    <>
+      <a className="skip-link" href="#main">Skip to content</a>
+      <header className="site-header" id="top">
         <div className="nav-shell">
           <Wordmark />
           <nav className={menuOpen ? "open" : ""} aria-label="Main navigation">
@@ -245,6 +247,7 @@ function App() {
         </div>
       </header>
 
+      <main id="main" tabIndex={-1}>
       <section className="hero section-shell">
         <div className="hero-copy">
           <div className="section-kicker"><span>01</span> MISSION CONTROL AS A SERVICE</div>
@@ -302,7 +305,8 @@ function App() {
               <div className="pass-heading"><div><span className="eyebrow">UPCOMING CONTACTS</span><strong>{todayLabel}</strong></div><button aria-label="More pass options">•••</button></div>
               <div className="table-scroll">
                 <table>
-                  <thead><tr><th>STATION</th><th>AOS / LOS</th><th>MAX EL.</th><th>BAND</th><th>PRICE</th></tr></thead>
+                  <caption className="sr-only">Upcoming ground station contacts</caption>
+                  <thead><tr><th scope="col">STATION</th><th scope="col">AOS / LOS</th><th scope="col">MAX EL.</th><th scope="col">BAND</th><th scope="col">PRICE</th></tr></thead>
                   <tbody>
                     {stations.map((station) => (
                       <tr key={station.name} className={activeStation === station.name ? "active" : ""} onMouseEnter={() => setActiveStation(station.name)} onMouseLeave={() => setActiveStation("")}>
@@ -385,8 +389,8 @@ function App() {
           <div className="section-heading">
             <div><div className="section-kicker"><span>07</span> PRICING</div><h2>Start with one mission.<br />Add capacity as you fly.</h2></div>
             <div className="billing-toggle" role="group" aria-label="Billing period">
-              <button className={!annual ? "active" : ""} onClick={() => setAnnual(false)}>Monthly</button>
-              <button className={annual ? "active" : ""} onClick={() => setAnnual(true)}>Annual <span>−15%</span></button>
+              <button className={!annual ? "active" : ""} aria-pressed={!annual} onClick={() => setAnnual(false)}>Monthly</button>
+              <button className={annual ? "active" : ""} aria-pressed={annual} onClick={() => setAnnual(true)}>Annual <span>−15%</span></button>
             </div>
           </div>
           <div className="pricing-grid">
@@ -441,6 +445,8 @@ function App() {
         </div>
       </section>
 
+      </main>
+
       <footer id="company">
         <div className="section-shell">
           <div className="footer-main">
@@ -452,7 +458,7 @@ function App() {
           <div className="footer-bottom"><span>© {new Date().getFullYear()} SAHYADRI MISSION CONTROL PVT. LTD.</span><div><a href="#company">LINKEDIN</a><a href="#company">X / TWITTER</a></div><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
         </div>
       </footer>
-    </main>
+    </>
   );
 }
 
