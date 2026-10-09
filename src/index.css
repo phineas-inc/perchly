@@ -167,7 +167,8 @@ th { height: 42px; color: #666f76; font-weight: 400; text-align: left; }
 th:first-child, td:first-child { padding-left: 22px; }
 td { height: 73px; border-top: 1px solid var(--line); color: #afb4b7; transition: background .2s; }
 tr.active td { background: rgba(242,169,59,.045); color: var(--text); }
-td:first-child i { display: inline-block; width: 5px; height: 5px; margin-right: 9px; border-radius: 50%; background: var(--teal); }.gold { background: var(--gold)!important; }
+td:first-child i { display: inline-block; width: 5px; height: 5px; margin-right: 9px; border-radius: 50%; background: var(--teal); }
+td:first-child i.gold { background: var(--gold); }
 td small { display: block; color: #666e75; font-size: 8px; }
 .outline-button { min-height: 42px; margin: 22px; padding: 0 16px; border: 1px solid #343c42; border-radius: 5px; background: transparent; color: #c8cbcc; display: flex; align-items: center; justify-content: space-between; font-size: 10px; font-weight: 600; cursor: pointer; transition: border-color .2s, transform .2s; }
 .pass-panel > .outline-button { width: calc(100% - 44px); }.outline-button:hover { border-color: #626a70; }
