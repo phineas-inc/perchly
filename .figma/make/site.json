@@ -1,0 +1,10 @@
+{
+  "description": "Enables Indian small-satellite teams to monitor telemetry, send commands, and schedule ground station passes via a secure, cloud-based mission control platform.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
