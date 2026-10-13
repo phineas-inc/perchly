@@ -449,7 +449,7 @@ function App() {
               </div>
               <label><span>MESSAGE</span><textarea name="message" rows={3} placeholder="Mission, orbit, protocol and current ground segment" /></label>
               <button className="button form-submit" type="submit">Request a technical demo <ArrowIcon /></button>
-              <small>* Required. By submitting, you agree to our <a href="/privacy.html">privacy policy</a>.</small>
+              <small>* Required. By submitting, you agree to our <a href="privacy.html">privacy policy</a>.</small>
             </form>
           )}
         </div>
@@ -462,7 +462,7 @@ function App() {
           <div className="footer-main">
             <div><Wordmark /><p>Mission control infrastructure<br />for small satellite teams.</p></div>
             <div><span>NAVIGATE</span>{navItems.slice(0, 4).map(([l, h]) => <a key={l} href={h}>{l}</a>)}</div>
-            <div><span>COMPANY</span><a href="/about.html">About</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></div>
+            <div><span>COMPANY</span><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
             <div><span>CONTACT</span><p>Nashik, Maharashtra<br />India</p><a href="mailto:ops@sahyadrimc.in">ops@sahyadrimc.in</a></div>
           </div>
           <div className="footer-bottom"><span>© {new Date().getFullYear()} SAHYADRI MISSION CONTROL PVT. LTD.</span><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
