@@ -22,7 +22,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
         env:
-          BASE_PATH: /sahyadri-mcs-website/
+          BASE_PATH: /perchly/
       - uses: actions/upload-pages-artifact@v3
         with: { path: dist }
   deploy:
