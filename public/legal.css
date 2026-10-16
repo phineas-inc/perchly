@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600&display=swap");
-:root { --bg: #0f1214; --panel: #171b1f; --line: #262c32; --text: #e8e6e1; --muted: #a2a9b0; --gold: #f2a93b; }
+:root { --bg: #0b1020; --panel: #121a2e; --line: #26324d; --text: #eef1f8; --muted: #a9b3ca; --gold: #ff8a63; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 "Inter", sans-serif; }
 a { color: var(--gold); text-underline-offset: 3px; }
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 header, main, footer { width: min(100% - 32px, 720px); margin: 0 auto; }
 header { display: flex; align-items: center; justify-content: space-between; min-height: 72px; border-bottom: 1px solid var(--line); }
+header a.brand { display: flex; align-items: center; gap: 10px; }
 header a:first-child { color: var(--text); font: 600 13px "Space Grotesk", sans-serif; letter-spacing: .08em; text-decoration: none; }
 header a:first-child b { color: var(--gold); }
 header a:last-child { font-size: 14px; }

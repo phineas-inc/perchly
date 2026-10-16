@@ -33,13 +33,14 @@ function ArrowIcon() {
 
 function Wordmark() {
   return (
-    <a className="wordmark" href="#top" aria-label="Sahyadri Mission Control home">
-      <span className="wordmark-mark">
-        <i />
-        <i />
-        <i />
-      </span>
-      <span>SAHYADRI <b>MC</b></span>
+    <a className="wordmark" href="#top" aria-label="Perchly home">
+      <svg className="wordmark-mark" viewBox="0 0 28 24" aria-hidden="true">
+        <path className="bird" d="M7 16.500C7 11.500 10.500 8 15 8c2.100 0 3.700 1 4.400 2.500L25 12l-4.200 1.800c-.7 2.500-3 4.200-5.800 4.200H7z" />
+        <path className="bird" d="M7.500 15.500 2 11l6.500.8z" />
+        <circle className="eye" cx="18.500" cy="11.500" r="1.100" />
+        <path className="perch" d="M3 20.500h22M12.500 17.500v3M16 17.500v3" />
+      </svg>
+      <span>PERCH<b>LY</b></span>
     </a>
   );
 }
@@ -463,9 +464,9 @@ function App() {
             <div><Wordmark /><p>Mission control infrastructure<br />for small satellite teams.</p></div>
             <div><span>NAVIGATE</span>{navItems.slice(0, 4).map(([l, h]) => <a key={l} href={h}>{l}</a>)}</div>
             <div><span>COMPANY</span><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
-            <div><span>CONTACT</span><p>Nashik, Maharashtra<br />India</p><a href="mailto:ops@sahyadrimc.in">ops@sahyadrimc.in</a></div>
+            <div><span>ABOUT THIS SITE</span><p>A concept project: an interactive prototype of a mission control platform for small satellite teams.</p></div>
           </div>
-          <div className="footer-bottom"><span>© {new Date().getFullYear()} SAHYADRI MISSION CONTROL PVT. LTD.</span><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
+          <div className="footer-bottom"><span>© {new Date().getFullYear()} PERCHLY · CONCEPT PROJECT BY TANISHQ</span><span className="system-online"><i /> ALL SYSTEMS NOMINAL</span></div>
         </div>
       </footer>
     </>
