@@ -281,7 +281,7 @@ function App() {
           <p>One platform for telemetry, commanding and ground station passes. Operated 24×7 from Nashik, India.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#demo">Book a demo <ArrowIcon /></a>
-            <a className="text-link" href="#platform">See the console <ArrowIcon /></a>
+            <a className="text-link" href="https://phineas-inc.github.io/perchly-app/" target="_blank" rel="noopener noreferrer">See the console<span className="sr-only"> (opens the live prototype in a new tab)</span> <ArrowIcon /></a>
           </div>
           <div className="hero-proof"><i /><span>Operations desk online</span><b>12:19:44 IST</b></div>
         </div>
